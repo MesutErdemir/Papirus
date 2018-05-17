@@ -1,0 +1,16 @@
+{% extends 'cleanblog/_layout/base.html.twig' %}
+
+{% block title %}Unnamed Post{% endblock %}
+
+{% block body_content %}
+
+<!-- Navigation -->
+{{ include('cleanblog/_include/navigation.html.twig') }}
+
+<!-- Page Header -->
+{{ include('cleanblog/_include/header_post.html.twig') }}
+
+<!-- Page Content -->
+{% block content %}{% endblock content %}
+
+{% endblock body_content %}

@@ -1,0 +1,15 @@
+easy_admin:
+    entities:
+        Setting:
+            class: App\Entity\Setting
+            label: 'Setting Management'
+            disabled_actions: ['new', 'delete']
+            list:
+                title: "Settings"
+                fields: ['id', 'key', 'value']
+                actions:
+                    - { name: 'edit', icon: 'pencil' }
+            edit:
+                fields:
+                    - 'key'
+                    - 'value'

@@ -1,0 +1,8 @@
+easy_admin:
+    design:
+        menu:
+            - { entity: 'Post', icon: 'pencil' }
+            - { entity: 'Category', icon: 'folder' }
+            - { entity: 'Tag', icon: 'tags' }
+            - { entity: 'User', icon: 'user' }
+            - { entity: 'Setting', icon: 'gear' }

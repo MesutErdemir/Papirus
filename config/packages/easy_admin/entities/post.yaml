@@ -1,0 +1,11 @@
+easy_admin:
+    entities:
+        Post:
+            class: App\Entity\Post
+            label: 'Post Management'
+            list:
+                title: "Post List"
+                actions:
+                    - { name: 'show', icon: 'search' }
+                    - { name: 'edit', icon: 'pencil' }
+                    - { name: 'delete', icon: 'trash' }
