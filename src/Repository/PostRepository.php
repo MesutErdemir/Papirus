@@ -23,6 +23,7 @@ class PostRepository extends ServiceEntityRepository
     public function getPostsWithPagination($page = 1)
     {
         $query = $this->createQueryBuilder('post')
+            ->andWhere('post.is_published = 1')
             ->orderBy('post.id', 'DESC')
             ->getQuery();
 
@@ -32,6 +33,7 @@ class PostRepository extends ServiceEntityRepository
     public function getPostsWithPaginationAsArray($page = 1)
     {
         $query = $this->createQueryBuilder('post')
+            ->andWhere('post.is_published = 1')
             ->leftJoin('post.categories', 'category')
             ->addSelect('category')
             ->orderBy('post.id', 'DESC')

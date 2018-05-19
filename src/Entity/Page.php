@@ -3,24 +3,15 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\PageRepository")
  */
-class Post
+class Page
 {
-
     /**
-     * Default list items count
-     *
-     */
-    const NUM_ITEMS = 10;
-
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -51,27 +42,10 @@ class Post
     private $is_published;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="posts")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $category;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="posts")
-     * @ORM\JoinTable(
-     *      name="posts_tags",
-     *      joinColumns={@ORM\JoinColumn(name="post_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
-     * )
-     */
-    private $tags;
-
-    /**
      * Constructor method
      */
     public function __construct()
     {
-        $this->tags = new ArrayCollection();
         $this->date = new \DateTime();
     }
 
@@ -80,7 +54,7 @@ class Post
      *
      * @return int
      */
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
@@ -214,74 +188,11 @@ class Post
     }
 
     /**
-     * Get Post Category
-     *
-     * @return Category
-     */
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    /**
-     * Set Post Category
-     *
-     * @param Category $category
-     */
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get Post Tags
-     *
-     * @return Collection|Tag[]
-     */
-    public function getTags(): Collection
-    {
-        return $this->tags;
-    }
-
-    /**
-     * Remove Tag from Post
-     *
-     * @param Tag $tag
-     * @return void
-     */
-    public function removeTag(Tag $tag): void
-    {
-        if ($this->tags->contains($tag) === false) {
-            return;
-        }
-
-        $this->tags->removeElement($tag);
-        $tag->removePost($this);
-    }
-
-    /**
-     * Add Tag to Post
-     *
-     * @param Tag $tag
-     * @return void
-     */
-    public function addTag(Tag $tag): void
-    {
-        if ($this->tags->contains($tag) === true) {
-            return;
-        }
-
-        $this->tags->add($tag);
-        $tag->addPost($this);
-    }
-
-    /**
      * Convert object to string magic method
      */
     public function __toString()
     {
         return $this->title;
     }
+
 }

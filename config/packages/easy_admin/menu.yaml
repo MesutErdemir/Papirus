@@ -1,6 +1,7 @@
 easy_admin:
     design:
         menu:
+            - { entity: 'Page', icon: 'file' }
             - { entity: 'Post', icon: 'pencil' }
             - { entity: 'Category', icon: 'folder' }
             - { entity: 'Tag', icon: 'tags' }

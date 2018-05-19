@@ -31,9 +31,3 @@ services:
         public: true
         arguments:
             - '@App\Repository\SettingRepository'
-
-#    service.setting.getSettingValue:
-#        class: App\Service\Setting
-#        factory: ['@service.setting', getSettingValue]
-#        autowire: false
-#        public: true
