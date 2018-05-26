@@ -42,7 +42,7 @@
             "*": "dist"
         },
         "sort-packages": true,
-        "component-dir": "public/uploads"
+        "component-dir": "public/assets"
     },
     "autoload": {
         "psr-4": {
