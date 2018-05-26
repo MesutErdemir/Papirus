@@ -19,7 +19,7 @@ class ContactController extends BlogController
     /**
      * Contact index
      *
-     * @Route("/", name="contact_index")
+     * @Route("", name="contact_index")
      * @Method("GET")
      */
     public function index(SessionInterface $session)

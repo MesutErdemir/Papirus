@@ -2,6 +2,15 @@
     "cocur/slugify": {
         "version": "v3.1"
     },
+    "components/elfinder": {
+        "version": "3.0"
+    },
+    "components/jquery": {
+        "version": "3.3.1"
+    },
+    "components/jqueryui": {
+        "version": "1.12.1"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -83,8 +92,20 @@
     "fig/link-util": {
         "version": "1.0.0"
     },
+    "helios-ag/fm-elfinder-bundle": {
+        "version": "7.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "7.0",
+            "ref": "fb9152ee3538f968d9e0f2c763ecbe4ab63eff26"
+        }
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
+    },
+    "kriswallsmith/assetic": {
+        "version": "v1.0.5"
     },
     "monolog/monolog": {
         "version": "1.23.0"
@@ -122,6 +143,9 @@
     "psr/simple-cache": {
         "version": "1.0.1"
     },
+    "robloach/component-installer": {
+        "version": "0.2.3"
+    },
     "sensio/framework-extra-bundle": {
         "version": "4.0",
         "recipe": {
@@ -130,6 +154,9 @@
             "version": "4.0",
             "ref": "aaddfdf43cdecd4cf91f992052d76c2cadc04543"
         }
+    },
+    "studio-42/elfinder": {
+        "version": "2.1.38"
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.0.2"
@@ -268,6 +295,9 @@
             "version": "3.3",
             "ref": "179470cb6492db92dffee208cfdb436f175c93b4"
         }
+    },
+    "symfony/polyfill-ctype": {
+        "version": "v1.8.0"
     },
     "symfony/polyfill-intl-icu": {
         "version": "v1.8.0"

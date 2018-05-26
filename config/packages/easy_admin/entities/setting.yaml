@@ -11,5 +11,4 @@ easy_admin:
                     - { name: 'edit', icon: 'pencil' }
             edit:
                 fields:
-                    - 'key'
                     - 'value'

@@ -1,8 +1,7 @@
 easy_admin:
     site_name: 'Papirus Admin'
     design:
-        form_theme:   'vertical'
         assets:
             js:
-              - 'ckeditor5/ckeditor.js'
+              - 'tinymce/tinymce.min.js'
               - 'admin/custom.js'

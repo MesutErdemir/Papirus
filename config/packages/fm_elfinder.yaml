@@ -1,0 +1,12 @@
+fm_elfinder:
+    assets_path: assets
+    instances:
+        default:
+            editor: tinymce4
+            include_assets: true
+            relative_path: true
+            connector:
+                roots:
+                    uploads:
+                        driver: LocalFileSystem
+                        path: uploads
