@@ -19,9 +19,17 @@ class PageRepository extends ServiceEntityRepository
         parent::__construct($registry, Page::class);
     }
 
-//    /**
-//     * @return Page[] Returns an array of Page objects
-//     */
+    public function getPageBySlug($slug)
+    {
+        return $this->findOneBy([
+            'is_published' => true,
+            'slug' => $slug
+        ]);
+    }
+
+    // /**
+    //  * @return Page[] Returns an array of Page objects
+    //  */
     /*
     public function findByExampleField($value)
     {

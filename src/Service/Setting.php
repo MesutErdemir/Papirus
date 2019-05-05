@@ -21,7 +21,7 @@ class Setting
      * @param string $key
      * @return string
      */
-    public function getSettingValue($key): ?string
+    public function getSettingValue($key, $default = ""): ?string
     {
         if (is_null($this->settingObjectCollection))
         {
@@ -38,6 +38,33 @@ class Setting
             }
         }
 
-        return false;
+        return $default;
+    }
+
+    /**
+     * Search setting by key
+     *
+     * @param string $key
+     * @return string
+     */
+    public function searchSettingByKey($key): array
+    {
+        if (is_null($this->settingObjectCollection))
+        {
+            $this->settingObjectCollection = $this->settingRepository->findBy([
+                'is_secure' => false
+            ]);
+        }
+
+        $settings_arr = [];
+        foreach($this->settingObjectCollection as $settingObject)
+        {
+            if (strpos($settingObject->getKey(), $key) !== false)
+            {
+                $settings_arr[$settingObject->getKey()] = $settingObject->getValue();
+            }
+        }
+
+        return $settings_arr;
     }
 }

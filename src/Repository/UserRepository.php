@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -13,7 +12,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method User[]    findAll()
  * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UserRepository extends ServiceEntityRepository implements UserLoaderInterface
+class UserRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {

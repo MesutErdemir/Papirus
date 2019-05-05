@@ -1,0 +1,10 @@
+<ol class="toc">
+    {% for heading in matchHeadings %}
+    <li class="toc-item toc-level-{{ heading[1] }}">
+        <a class="toc-link" href="#{{ heading[2] }}">
+            <span class="toc-number">{{ loop.index }}.</span>
+            <span class="toc-text">{{ heading[2] }}</span>
+        </a>
+    </li>
+    {% endfor %}
+</ol>

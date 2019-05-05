@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="True" name="HandheldFriendly">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport" />
+    <meta name="description" content="{{ settingService.getSettingValue("description") }}">
+    <meta name="author" content="{{ settingService.getSettingValue("author") }}">
+    <link rel="shortcut icon" href="{{ asset('assets/themes/cactus/images/favicon.ico') }}">
+
+    <meta content="website" property="og:type">
+    <meta property="og:title" content="{{ settingService.getSettingValue("site_name") }}">
+    <meta property="og:url" content="{{ path('papirus_index') }}">
+    <meta property="og:site_name" content="{{ settingService.getSettingValue("site_name") }}">
+    <meta property="og:description" content="{{ settingService.getSettingValue("description") }}">
+    <meta content="en" property="og:locale">
+
+    <meta content="summary" name="twitter:card">
+    <meta name="twitter:title" content="{{ settingService.getSettingValue("site_name") }}">
+    <meta name="twitter:description" content="{{ settingService.getSettingValue("description") }}">
+
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/themes/cactus/images/favicon-192x192.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/themes/cactus/images/apple-touch-icon.png') }}">
+
+    <title>
+        {% block title %}Home{% endblock %}
+        -
+        {{ settingService.getSettingValue("site_name") }}
+    </title>
+    
+    <link rel="stylesheet" href="{{ asset('assets/themes/cactus/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/themes/cactus/css/rtl.css') }}">
+    {% block custom_css %}{% endblock %}
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    {% block body_content %}{% endblock %}
+
+    <!-- styles -->
+    <link href="{{ asset('assets/themes/cactus/lib/font-awesome/css/all.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/themes/cactus/lib/justified-gallery/css/justifiedGallery.min.css') }}" rel="stylesheet">
+
+    <!-- jquery -->
+    <script src="{{ asset('assets/themes/cactus/lib/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/themes/cactus/lib/justified-gallery/js/jquery.justifiedGallery.min.js') }}"></script>
+    <script src="{{ asset('assets/themes/cactus/js/main.js') }}"></script>
+
+    {% if settingService.getSettingValue("disqus_shortname") is not empty %}
+    <script type="text/javascript">
+        var disqus_shortname = '{{ settingService.getSettingValue("disqus_shortname") }}';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+    {% endif %}
+
+    {% block custom_js %}{% endblock %}
+</body>
+</html>

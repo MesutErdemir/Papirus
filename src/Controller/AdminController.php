@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
 use Cocur\Slugify\Slugify;
 
-class AdminController extends BaseAdminController
+class AdminController extends EasyAdminController
 {
     public function persistEntity($entity)
     {

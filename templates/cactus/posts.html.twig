@@ -1,0 +1,43 @@
+{% extends 'cactus/_layout/index.html.twig' %}
+
+{% block title %}Posts{% endblock %}
+
+{% block page_content %}
+<div id="archive">
+    <ul class="post-list">
+        {% set years = [] %}
+        {% for post in posts %}
+        {% set year = post.getDate()|date("Y") %}
+        {% if year not in years %}
+            {% set years = years|merge([year]) %}
+            <h2>{{ year }}</h2>
+        {% endif %}
+
+        <li class="post-item">
+            <div class="meta">
+                <time datetime="{{ post.getDate()|date("c") }}" itemprop="datePublished">{{ post.getDate()|date("Y-m-d") }}</time>
+            </div>
+            <span>
+                <a href="{{ path('papirus_post', {slug: post.getSlug()}) }}">{{ post.getTitle() }}</a>
+            </span>
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% if totalPages > 1 %}
+    <div class="pagination">
+        {% if currentPage > 1 %}
+            <a href="{{ path('papirus_posts', {page: currentPage-1 < 1 ? 1 : currentPage-1}) }}">
+                <i class="fas fa-angle-left"></i>
+            </a>
+        {% endif %}
+        <span class="page-number">Page {{ currentPage }} of {{ totalPages }}</span>
+        {% if currentPage != totalPages %}
+            <a href="{{ path('papirus_posts', {page: currentPage+1 <= totalPages ? currentPage+1 : currentPage}) }}">
+                <i class="fas fa-angle-right"></i>
+            </a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

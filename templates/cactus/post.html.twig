@@ -1,0 +1,111 @@
+{% extends 'cactus/_layout/base.html.twig' %}
+
+{% block title %}{{ post.getTitle() }}{% endblock %}
+
+{% block body_content %}
+    <div id="header-post">
+        <a href="#" id="menu-icon">
+            <i class="fas fa-bars fa-lg"></i>
+        </a>
+        <a href="#" id="menu-icon-tablet">
+            <i class="fas fa-bars fa-lg"></i>
+        </a>
+        <a href="#" id="top-icon-tablet" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;">
+            <i class="fas fa-chevron-up fa-lg"></i>
+        </a>
+        <span id="menu">
+            <span id="nav">
+                {{ include('cactus/_include/lite_navigation.html.twig') }}
+            </span>
+            <br/>
+            <span id="actions">
+                <ul>
+                    <!--<li>
+                        <a class="icon" href="#">
+                            <i aria-hidden="true" class="fas fa-chevron-left" onmouseout="$('#i-prev').toggle();" onmouseover="$('#i-prev').toggle();"></i>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="icon" href="#">
+                            <i aria-hidden="true" class="fas fa-chevron-right" onmouseout="$('#i-next').toggle();" onmouseover="$('#i-next').toggle();"></i>
+                        </a>
+                    </li>-->
+
+                    <li>
+                        <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
+                            <i aria-hidden="true" class="fas fa-chevron-up" onmouseout="$('#i-top').toggle();" onmouseover="$('#i-top').toggle();"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon" href="#">
+                            <i aria-hidden="true" class="fas fa-share-alt" onclick="$('#share').toggle();return false;" onmouseout="$('#i-share').toggle();" onmouseover="$('#i-share').toggle();"></i>
+                        </a>
+                    </li>
+                </ul>
+                <span class="info" id="i-prev" style="display:none;">Previous post</span>
+                <span class="info" id="i-next" style="display:none;">Next post</span>
+                <span class="info" id="i-top" style="display:none;">Back to top</span>
+                <span class="info" id="i-share" style="display:none;">Share post</span>
+            </span>
+            <br/>
+            <div id="share" style="display: none">
+                <ul>
+                    <li><a class="icon" href="http://www.facebook.com/sharer.php?u={{ url('papirus_post', {slug: post.getSlug()}) }}"><i aria-hidden="true" class="fab fa-facebook "></i></a></li>
+                    <li><a class="icon" href="https://twitter.com/share?url={{ url('papirus_post', {slug: post.getSlug()}) }}"><i aria-hidden="true" class="fab fa-twitter "></i></a></li>
+                    <li><a class="icon" href="http://www.linkedin.com/shareArticle?url={{ url('papirus_post', {slug: post.getSlug()}) }}"><i aria-hidden="true" class="fab fa-linkedin "></i></a></li>
+                    <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url={{ url('papirus_post', {slug: post.getSlug()}) }}"><i aria-hidden="true" class="fab fa-pinterest "></i></a></li>
+                    <li><a class="icon" href="mailto:?subject={{ post.getTitle() }}&body=Check out this article: {{ url('papirus_post', {slug: post.getSlug()}) }}"><i aria-hidden="true" class="fas fa-envelope "></i></a></li>
+                    <li><a class="icon" href="https://getpocket.com/save?url={{ url('papirus_post', {slug: post.getSlug()}) }}"><i aria-hidden="true" class="fab fa-get-pocket "></i></a></li>
+                    <li><a class="icon" href="http://reddit.com/submit?url={{ url('papirus_post', {slug: post.getSlug()}) }}"><i aria-hidden="true" class="fab fa-reddit "></i></a></li>
+                    <li><a class="icon" href="http://www.stumbleupon.com/submit?url={{ url('papirus_post', {slug: post.getSlug()}) }}"><i aria-hidden="true" class="fab fa-stumbleupon "></i></a></li>
+                    <li><a class="icon" href="http://digg.com/submit?url={{ url('papirus_post', {slug: post.getSlug()}) }}"><i aria-hidden="true" class="fab fa-digg "></i></a></li>
+                    <li><a class="icon" href="http://www.tumblr.com/share/link?url={{ url('papirus_post', {slug: post.getSlug()}) }}"><i aria-hidden="true" class="fab fa-tumblr "></i></a></li>
+                </ul>
+            </div>
+            <div id="toc">
+                {% include 'cactus/_include/toc.html.twig' with matchHeadings %}
+            </div>
+        </span>
+    </div>
+
+    <div class="content index py4">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+            <header>
+                <h1 class="posttitle" itemprop="name headline">
+                    {{ post.getTitle() }}
+                </h1>
+
+                <div class="meta">
+                    <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                        <span itemprop="name">{{ settingService.getSettingValue("site_name") }}</span>
+                    </span>
+
+                    <div class="postdate">
+                        <time datetime="{{ post.getDate()|date("c") }}" itemprop="datePublished">{{ post.getDate()|date("Y-m-d") }}</time>
+                    </div>
+
+                    <div class="article-tag">
+                        <i class="fas fa-tag"></i>
+
+                        {% for tag in post.getTags() %}
+                            <a class="tag-link" href="#">{{ tag.getName() }}</a>{% if not loop.last %},{% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </header>
+
+            <div class="content" itemprop="articleBody">
+                {{ post.getContent()|preg_replace('#<h(\\d)[^>]*?>(.*?)<[^>]*?/h\\d>#i', '<h$1 id="$2"><a href="#$2" class="headerlink" title="$2"></a>$2</h$1>')|raw }}
+            </div>
+        </article>
+
+        <div class="blog-post-comments">
+            <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the comments.</noscript>
+            </div>
+        </div>
+
+        {{ include('cactus/_include/footer.html.twig') }}
+    </div>
+{% endblock body_content %}

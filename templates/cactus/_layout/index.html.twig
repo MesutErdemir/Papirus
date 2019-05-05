@@ -1,0 +1,20 @@
+{% extends 'cactus/_layout/base.html.twig' %}
+
+{% block body_content %}
+<div class="content index py4">
+    <header id="header">
+        <a href="{{ path('papirus_index') }}">
+            <div id="logo" style="background-image: url({{ asset(settingService.getSettingValue("logo_url")) }});"></div>
+            <div id="title">
+                <h1>{{ settingService.getSettingValue("site_name") }}</h1>
+            </div>
+        </a>
+
+        {{ include('cactus/_include/navigation.html.twig') }}
+    </header>
+
+    {% block page_content %}{% endblock %}
+
+    {{ include('cactus/_include/footer.html.twig') }}
+</div>
+{% endblock %}

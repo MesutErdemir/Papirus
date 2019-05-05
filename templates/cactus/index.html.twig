@@ -1,0 +1,51 @@
+{% extends 'cactus/_layout/index.html.twig' %}
+
+{% block page_content %}
+<section id="about">
+    <p>{{ settingService.getSettingValue("about_summary") }}</p>
+    <p>
+      Find me on;
+        
+        {% for setting_key, setting_value in settingService.searchSettingByKey("social_") %}
+            {% if setting_value %}
+            <a class="icon" target="_blank" href="{{ setting_value }}">
+            <i class="fab fa-{{ setting_key|replace({'social_': ""}) }}"></i></a>
+            {% endif %}
+        {% endfor %}
+    </p>
+</section>
+<section id="posts">
+    <span class="h1">
+        <a href="{{ path('papirus_posts') }}">Posts</a>
+    </span>
+
+    <ul class="post-list">
+        {% for post in recentPosts %}
+        <li class="post-item">
+            <div class="meta">
+                <time datetime="{{ post.getDate()|date("c") }}" itemprop="datePublished">{{ post.getDate()|date("Y-m-d") }}</time>
+            </div>
+            <span>
+                <a href="{{ path('papirus_post', {slug: post.getSlug()}) }}">{{ post.getTitle() }}</a>
+            </span>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+
+<section id="projects">
+    <span class="h1">
+        Projects
+    </span>
+    <ul class="project-list">
+        {% for project in projectService.getPublishedProjects() %}
+        <li class="project-item">
+            <a href="{{ project.getUrl() }}">{{ project.getName() }}</a>:
+            <p>{{ project.getSummary() }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+
+
+{% endblock %}

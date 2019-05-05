@@ -3,5 +3,7 @@ easy_admin:
     design:
         assets:
             js:
-              - 'tinymce/tinymce.min.js'
-              - 'admin/custom.js'
+              - 'assets/tinymce/tinymce.min.js'
+              - 'assets/admin/custom.js'
+    user:
+        name_property_path: 'username'

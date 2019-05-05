@@ -44,6 +44,24 @@ class PostRepository extends ServiceEntityRepository
         return $this->paginate($query, $page);
     }
 
+    public function getRecentPosts($limit = 5)
+    {
+        return $this->createQueryBuilder('post')
+            ->andWhere('post.is_published = 1')
+            ->orderBy('post.id', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getPostBySlug($slug)
+    {
+        return $this->findOneBy([
+            'is_published' => true,
+            'slug' => $slug
+        ]);
+    }
+
     /**
      * Paginator Helper
      *
