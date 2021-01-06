@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Post;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
@@ -15,7 +15,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  */
 class PostRepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Post::class);
     }
@@ -89,9 +89,9 @@ class PostRepository extends ServiceEntityRepository
         return $paginator;
     }
 
-//    /**
-//     * @return Post[] Returns an array of Post objects
-//     */
+    // /**
+    //  * @return Post[] Returns an array of Post objects
+    //  */
     /*
     public function findByExampleField($value)
     {

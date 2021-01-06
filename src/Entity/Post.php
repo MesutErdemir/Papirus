@@ -3,18 +3,16 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
+ * @ORM\Entity(repositoryClass=App\Repository\PostRepository::class)
  */
 class Post
 {
-
     /**
      * Default list items count
-     *
      */
     const NUM_ITEMS = 10;
 
@@ -172,7 +170,7 @@ class Post
      *
      * @return object
      */
-    public function getDate(): ?object
+    public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
     }
@@ -183,7 +181,7 @@ class Post
      * @param string date
      * @return self
      */
-    public function setDate($date): self
+    public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
 

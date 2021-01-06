@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\TagRepository")
+ * @ORM\Entity(repositoryClass=App\Repository\TagRepository::class)
  */
 class Tag
 {
@@ -39,48 +39,6 @@ class Tag
     public function __construct()
     {
         $this->posts = new ArrayCollection();
-    }
-
-    /**
-     * Get posts belongs to Tag
-     *
-     * @return Collection|Post[]
-     */
-    public function getPosts(): Collection
-    {
-        return $this->posts;
-    }
-
-    /**
-     * Remove Post from Tag
-     *
-     * @param Post $post
-     * @return void
-     */
-    public function removePost(Post $post): void
-    {
-        if ($this->posts->contains($post) === false) {
-            return;
-        }
-
-        $this->posts->removeElement($post);
-        $post->removeTag($this);
-    }
-
-    /**
-     * Add Post to Tag
-     *
-     * @param Post $post
-     * @return void
-     */
-    public function addPost(Post $post): void
-    {
-        if ($this->posts->contains($post) === true) {
-            return;
-        }
-
-        $this->posts->add($post);
-        $post->addTag($this);
     }
 
     /**
@@ -154,6 +112,48 @@ class Tag
 
         return $this;
     }
+    
+    /**
+     * Get posts belongs to Tag
+     *
+     * @return Collection|Post[]
+     */
+    public function getPosts(): Collection
+    {
+        return $this->posts;
+    }
+
+    /**
+     * Remove Post from Tag
+     *
+     * @param Post $post
+     * @return void
+     */
+    public function removePost(Post $post): void
+    {
+        if ($this->posts->contains($post) === false) {
+            return;
+        }
+
+        $this->posts->removeElement($post);
+        $post->removeTag($this);
+    }
+
+    /**
+     * Add Post to Tag
+     *
+     * @param Post $post
+     * @return void
+     */
+    public function addPost(Post $post): void
+    {
+        if ($this->posts->contains($post) === true) {
+            return;
+        }
+
+        $this->posts->add($post);
+        $post->addTag($this);
+    }
 
     /**
      * Convert object to string magic method
@@ -162,5 +162,4 @@ class Tag
     {
         return $this->name;
     }
-
 }

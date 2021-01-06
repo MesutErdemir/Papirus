@@ -5,13 +5,13 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PageRepository")
+ * @ORM\Entity(repositoryClass=App\Repository\PageRepository::class)
  */
 class Page
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\Id
+     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -146,7 +146,7 @@ class Page
      *
      * @return object
      */
-    public function getDate(): ?object
+    public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
     }
@@ -157,7 +157,7 @@ class Page
      * @param string date
      * @return self
      */
-    public function setDate($date): self
+    public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
 
@@ -194,5 +194,4 @@ class Page
     {
         return $this->title;
     }
-
 }

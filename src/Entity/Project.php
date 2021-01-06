@@ -5,13 +5,13 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository")
+ * @ORM\Entity(repositoryClass=App\Repository\ProjectRepository::class)
  */
 class Project
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\Id
+     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -32,7 +32,7 @@ class Project
     private $summary;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="text")
      */
     private $description;
 
@@ -52,7 +52,7 @@ class Project
     /**
      * Get the value of name
      */ 
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -62,7 +62,7 @@ class Project
      *
      * @return  self
      */ 
-    public function setName($name)
+    public function setName(string $name): self
     {
         $this->name = $name;
 
@@ -72,7 +72,7 @@ class Project
     /**
      * Get the value of url
      */ 
-    public function getUrl()
+    public function getUrl(): ?string
     {
         return $this->url;
     }
@@ -82,7 +82,7 @@ class Project
      *
      * @return  self
      */ 
-    public function setUrl($url)
+    public function setUrl(string $url): self
     {
         $this->url = $url;
 

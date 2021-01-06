@@ -3,7 +3,7 @@ fm_elfinder:
     instances:
         default:
             editor: tinymce4
-            include_assets: true
+            #include_assets: true
             relative_path: true
             connector:
                 roots:
