@@ -6,10 +6,17 @@
     <p>
       Find me on;
         
+        {% set customSocialIcons = {'qrz': 'fas fa-broadcast-tower'} %}
         {% for setting_key, setting_value in settingService.searchSettingByKey("social_") %}
+            {% set socialName = setting_key|replace({'social_': ""}) %}
             {% if setting_value %}
-            <a class="icon" target="_blank" href="{{ setting_value }}">
-            <i class="fab fa-{{ setting_key|replace({'social_': ""}) }}"></i></a>
+                <a class="icon" target="_blank" href="{{ setting_value }}">
+                {% if customSocialIcons[socialName] is defined %}
+                    <i class="{{ customSocialIcons[socialName] }}"></i>
+                {% else %}
+                    <i class="fab fa-{{ socialName }}"></i>
+                {% endif %}
+                </a>
             {% endif %}
         {% endfor %}
     </p>
